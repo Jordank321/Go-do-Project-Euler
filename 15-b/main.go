@@ -22,7 +22,22 @@ func FindRoutesInSquareGridOfX(x int) int {
 
 	for i := x; i >= 0; i-- {
 		for j := x; j >= 0; j-- {
-
+			routesFromNode := 0
+			if i < x {
+				routesFromNode += grid[i+1][j]
+				if i+1 == x && j == x {
+					routesFromNode++
+				}
+			}
+			if j < x {
+				routesFromNode += grid[i][j+1]
+				if i == x && j+1 == x {
+					routesFromNode++
+				}
+			}
+			grid[i][j] = routesFromNode
 		}
 	}
+
+	return grid[0][0]
 }
